@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ガールフレンド（♪）本当にリリースおめでとう！！</title>
+  <script>
+    function calcTimeSpan(t, origin) {
+      var diff = t.getTime() - origin.getTime();
+      return {
+        msec: diff % 1000,
+        sec: Math.floor(diff / 1000) % 60,
+        min: Math.floor(diff / (1000 * 60)) % 60,
+        hour: Math.floor(diff / (1000 * 60 * 60)) % 24,
+        day: Math.floor(diff / (1000 * 60 * 60 * 24)),
+        hour2: Math.floor(diff / (1000 * 60 * 60))
+      };
+    }
+
+    function timeSpanAsString(ts) {
+      return ts.day + '日' + ts.hour + '時間' + ts.min + '分';
+    }
+
+    var origin = new Date(2015, 11, 1, 19, 44);
+    var androidFinishDate = new Date(2015, 11, 16, 13, 0);
+    var iOSFinishDate = new Date(2015, 11, 17, 17, 0);
+
+    var origin2 = new Date(2015, 11, 22, 20, 16);
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var tsAndroid = calcTimeSpan(androidFinishDate, origin);
+      document.getElementById('timer-android').innerHTML = timeSpanAsString(tsAndroid);
+      document.getElementById('hourTimer-android').innerHTML = tsAndroid.hour2;
+      var tsiOS = calcTimeSpan(iOSFinishDate, origin);
+      document.getElementById('timer-ios').innerHTML = timeSpanAsString(tsiOS);
+      document.getElementById('hourTimer-ios').innerHTML = tsiOS.hour2;
+
+      var ts = calcTimeSpan(new Date(2015, 11, 23, 20, 20), origin2);
+      document.getElementById('timer').innerHTML = timeSpanAsString(ts);
+      document.getElementById('hourTimer').innerHTML = ts.hour2;
+
+      /*
+      setInterval(function() {
+        var ts = calcTimeSpan(new Date(), origin2);
+        document.getElementById('timer').innerHTML = timeSpanAsString(ts);
+        document.getElementById('hourTimer').innerHTML = ts.hour2;
+      }, 100);
+      */
+    });
+  </script>
+</head>
+<body>
+  <h1>ガールフレンド（♪）</h1>
+  <section>
+    <h2>2015/12/22メンテ</h2>
+    <p>2015年12月22日 20:16より緊急メンテ開始。メンテ時間: <span id='timer'></span>（<span id='hourTimer'></span>時間）</p>
+  </section>
+
+  <section>
+    <h2>2015/12/01メンテ</h2>
+    <p>2015年12月1日 19:44より緊急メンテ開始。</p>
+    <p>Android版 2015年12月16日 13:00よりサービス再開。メンテ時間: <span id='timer-android'></span>（<span id='hourTimer-android'></span>時間）</p>
+    <p>iOS版 2015年12月17日 17:00よりサービス再開。メンテ時間: <span id='timer-ios'></span>（<span id='hourTimer-ios'></span>時間）</p>
+  </section>
+
+  <section>
+    <p><a href="http://lp.gf-music.amebagames.com/?device=pc">ガールフレンド（おんぷ）公式サイト</a></p>
+    <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/gf_kari_music" data-widget-id="673379228469997569">@gf_kari_musicさんのツイート</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+  </section>
+</body>
+</html>
